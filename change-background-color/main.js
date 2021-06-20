@@ -11,27 +11,19 @@ function changeBG () {
   console.log(bgColorArr.length);
   console.log('조건문',new Date().getMilliseconds());
   
-  const preVal = bgColorArr[bgColorArr.length-2];
-  const curVal = bgColorArr[bgColorArr.length-1];
-  
-  if(bgColorArr.length === 0){
-    console.log('경우1');
-    bgColorArr.push(color[colorIndex]);
-    console.log(bgColorArr);
-    body.style.backgroundColor = color[colorIndex];
-    return
-  } else {
-    console.log('경우2');
+  bgColorArr.push(color[colorIndex]);
+
+  if(bgColorArr.length > 1) {
     console.log('길이',bgColorArr.length);
-    console.log(preVal);
-    bgColorArr.push(color[colorIndex]);
-    console.log('길이',bgColorArr.length);
+    let preVal = bgColorArr[bgColorArr.length-2];
+    let curVal = bgColorArr[bgColorArr.length-1];
     console.log('배열',bgColorArr,'배열길이'+ bgColorArr.length);
     console.log('이전 값',preVal,bgColorArr[bgColorArr.length-2],'현재 값',curVal,bgColorArr[bgColorArr.length-1]);
     console.log('이전 현재 비교',curVal==preVal);
-    // (curVal==preVal)&&(changeBG());
     body.style.backgroundColor = curVal;
+    return
   } 
+  body.style.backgroundColor = color[colorIndex];
   console.log('종료');
 }
 
