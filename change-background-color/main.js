@@ -1,6 +1,7 @@
 const button = document.querySelector("button");
 const body = document.querySelector("body");
-const color = [ 'red' , 'yellow' , 'orange', 'black' ];
+//const color = [ 'red' , 'yellow' , 'orange', 'black' ];
+const color = [ 'red' , 'yellow'];
 // body.style.backgroundColor = 'violet'
 const bgColor = body.style.backgroundColor;
 const bgColorArr = [];
@@ -8,21 +9,20 @@ const bgColorArr = [];
 button.addEventListener('click', changeBG )
 function changeBG () {
   const colorIndex = parseInt(Math.random()*(color.length));
-  console.log(bgColorArr.length);
   console.log('조건문',new Date().getMilliseconds());
   
   bgColorArr.push(color[colorIndex]);
+  let preVal = bgColorArr[bgColorArr.length-2];
+  let curVal = bgColorArr[bgColorArr.length-1];
+  console.log(preVal,curVal);
 
   if(bgColorArr.length > 1) {
-    console.log('길이',bgColorArr.length);
-    let preVal = bgColorArr[bgColorArr.length-2];
-    let curVal = bgColorArr[bgColorArr.length-1];
-    console.log('배열',bgColorArr,'배열길이'+ bgColorArr.length);
-    console.log('이전 값',preVal,bgColorArr[bgColorArr.length-2],'현재 값',curVal,bgColorArr[bgColorArr.length-1]);
-    console.log('이전 현재 비교',curVal==preVal);
-    body.style.backgroundColor = curVal;
-    return
+    console.log( `배열 - ${bgColorArr}, 배열 길이 - ${bgColorArr.length}, 이전 값 - ${preVal}, 현재 값 ${curVal} , 이전 현재  값 비교 ${preVal===curVal}` );
+    (preVal===curVal)&&(changeBG());
+    // body.style.backgroundColor = curVal;
+    // return
   } 
+  console.log('현',curVal,'배열',color[colorIndex]);
   body.style.backgroundColor = color[colorIndex];
   console.log('종료');
 }
